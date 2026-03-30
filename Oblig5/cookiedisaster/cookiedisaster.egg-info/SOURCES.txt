@@ -1,0 +1,8 @@
+setup.py
+cookiedisaster.egg-info/PKG-INFO
+cookiedisaster.egg-info/SOURCES.txt
+cookiedisaster.egg-info/dependency_links.txt
+cookiedisaster.egg-info/requires.txt
+cookiedisaster.egg-info/top_level.txt
+envs/__init__.py
+envs/cookiedisaster.py
