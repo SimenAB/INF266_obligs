@@ -1,4 +1,5 @@
 Oblig3/
 Oblig4/
 Oblig5/
-
+__pycache__/
+*.pyc
