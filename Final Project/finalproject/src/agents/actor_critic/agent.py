@@ -13,16 +13,17 @@ DIRS = np.array([(-1, 0), (0, 1), (1, 0), (0, -1)], dtype=np.int32)
 
 
 def preprocess(obs, grid_w=16, grid_h=16):
-    """Make the observation easier for the DQN to use.
+    """Turn the dict observation into a flat feature vector (24 floats).
 
-    Returns 24 numbers:
-    - my position
-    - opponent position
-    - direction to the closest item
-    - distance to items up/right/down/left
-    - walls next to the agent
-    - small 3x3 area around the agent
-    - current step in the episode
+    Features:
+      [0:2]    self position (normalized)
+      [2:4]    opponent position (normalized)
+      [4:6]    offset to nearest item (dy, dx) normalized
+      [6:10]   normalized distance to nearest item in each of UP/RIGHT/DOWN/LEFT
+               half-planes (1.0 if no item in that direction)
+      [10:14]  obstacle flag for the 4 neighbour tiles (1=blocked, 0=walkable)
+      [14:23]  3x3 patch around the agent: 0=empty, 0.5=item, 1=wall/edge
+      [23]     step counter / 1000
     """
     tile_map = obs["map_features"]["tile_type"]
     pos = obs["units"]["position"][0].astype(np.int32)
